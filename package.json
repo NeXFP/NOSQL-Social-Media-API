@@ -1,0 +1,25 @@
+{
+  "name": "NOSQL-Social-Media-API",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeXFP/NOSQL-Social-Media-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeXFP/NOSQL-Social-Media-API/issues"
+  },
+  "homepage": "https://github.com/NeXFP/NOSQL-Social-Media-API#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "moment": "^2.29.1"
+  }
+}
