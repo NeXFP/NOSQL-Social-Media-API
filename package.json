@@ -20,6 +20,7 @@
   "homepage": "https://github.com/NeXFP/NOSQL-Social-Media-API#readme",
   "dependencies": {
     "express": "^4.17.2",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.5"
   }
 }
