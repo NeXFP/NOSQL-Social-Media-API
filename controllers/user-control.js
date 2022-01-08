@@ -96,7 +96,7 @@ const userControllers = {
             res.status(400).json(err);
           });
       },
-      removeFriend({ params }, res) {
+      deleteFriend({ params }, res) {
         User.findByIdAndUpdate(
           { _id: params.id },
           { $pull: { friends: params.friendId } },
