@@ -1,5 +1,5 @@
 const { Thought, User, Types } = require('../models');
-const { startSession, findOneAndDelete } = require('../models/User');
+// const { startSession, findOneAndDelete } = require('../models/User');
 
 const ThoughtControllers = {
     getAllThoughts(req, res) {
@@ -44,6 +44,7 @@ const ThoughtControllers = {
         })
         .catch(err => res.json(err));
     },
+    /*
     deleteThought({ params }, res) {
         Thought,findOneAndDelete({ _id: params.id})
         .then(deleteThought => {
@@ -61,6 +62,7 @@ const ThoughtControllers = {
         })
         .catch(err => res.json(err));
     },
+    */
     addReactions({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.id },
@@ -76,7 +78,7 @@ const ThoughtControllers = {
             })
             .catch(err => res.json(err));
     },
-    removeReaction({ params }, res) {
+    deleteReactions({ params }, res) {
         Thought.findOneAndUpdate(
             { _id: params.id },
             { $pull: { reactions: { reactionId: params.reactionId } } },
@@ -86,3 +88,5 @@ const ThoughtControllers = {
             .catch(err => res.json(err));
     }
 };
+
+module.exports = ThoughtControllers
