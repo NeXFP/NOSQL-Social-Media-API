@@ -10,35 +10,31 @@ const userControllers = {
             .select('-__v')
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
-                console.log(err);
                 res.status(400).json(err)
             })
     },
-    // getUserById({ params }, res) {
-    //     User.findOne({ _id: params.id })
-    //       .populate({
-    //         path: "thoughts",
-    //         select: "-__v",
-    //       })
-    //       .select("-__v")
-    //       .then((dbUserData) => {
-    //         if (!dbUserData) {
-    //           res.status(404).json({ message: "No users found with this id." });
-    //           return;
-    //         }
-    //         res.json(dbUserData);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //         res.status(400).json(err);
-    //       });
-    //   },
-      createUser({ body }, res) {
-        console.log("BODY OBJECT", body)
+    getUserById({ params }, res) {
+        User.findOne({ _id: params.id })
+          .populate({
+            path: "thoughts",
+            select: "-__v",
+          })
+          .select("-__v")
+          .then((dbUserData) => {
+            if (!dbUserData) {
+              res.status(404).json({ message: "No users found with this id!" });
+              return;
+            }
+            res.json(dbUserData);
+          })
+          .catch((err) => {
+            res.status(400).json(err);
+          });
+      },
+    createUser({ body }, res) {
         User.create(body)
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
-                console.log(err)
                 res.status(400).json(err)
             })
     },
@@ -49,7 +45,7 @@ const userControllers = {
         })
           .then((dbUserData) => {
             if (!dbUserData) {
-              res.status(404).json({ message: "No users found with this id." });
+              res.status(404).json({ message: "No users found with this id!" });
               return;
             }
             res.json(dbUserData);
@@ -60,7 +56,7 @@ const userControllers = {
         User.findOneAndDelete({ _id: params.id })
           .then((dbUserData) => {
             if (!dbUserData) {
-              res.status(404).json({ message: "No users found with this id." });
+              res.status(404).json({ message: "No users found with this id!" });
               return;
             }
             User.updateMany(
@@ -70,7 +66,7 @@ const userControllers = {
               .then(() => {
                 Thought.deleteMany({ username: dbUserData.username })
                   .then(() => {
-                    res.json({ message: "Successfully deleted user." });
+                    res.json({ message: "Successfully deleted user!" });
                   })
                   .catch((err) => res.status(400).json(err));
               })
@@ -87,7 +83,7 @@ const userControllers = {
           .select("-__v")
           .then((dbUserData) => {
             if (!dbUserData) {
-              res.status(404).json({ message: "No user found with this id." });
+              res.status(404).json({ message: "No users found with this id!" });
               return;
             }
             res.json(dbUserData);
@@ -96,7 +92,7 @@ const userControllers = {
             res.status(400).json(err);
           });
       },
-      deleteFriend({ params }, res) {
+      removeFriend({ params }, res) {
         User.findByIdAndUpdate(
           { _id: params.id },
           { $pull: { friends: params.friendId } },
@@ -105,7 +101,7 @@ const userControllers = {
           .select("-__v")
           .then((dbUserData) => {
             if (!dbUserData) {
-              res.status(404).json({ message: "No friend found with this id." });
+              res.status(404).json({ message: "No friends found with this id!" });
               return;
             }
             res.json(dbUserData);
@@ -114,4 +110,4 @@ const userControllers = {
       },
 }
 
-module.exports = userControllers;
+module.exports = userControllers
