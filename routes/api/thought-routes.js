@@ -8,9 +8,20 @@ const {
     removeReaction
 } = require('../../controllers/thought-control')
 
-router.route('/').get(getAllThoughts);
-router.route('/:userId').post(addThought);
-router.route('/:thoughtId').get(getThoughtById).put(addThought).delete(removeThought);
-router.route('/:thoughtId/reactions').post(addReaction).delete(removeReaction);
+router
+    .route('/')
+    .get(getAllThoughts);
+router
+    .route('/:userId')
+    .post(addThought);
+router
+    .route('/:thoughtId')
+    .get(getThoughtById)
+    .put(addThought)
+    .delete(removeThought);
+router
+    .route('/:thoughtId/reactions')
+    .post(addReaction)
+    .delete(removeReaction);
 
 module.exports = router;
